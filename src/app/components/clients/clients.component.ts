@@ -92,4 +92,17 @@ export class ClientsComponent implements OnInit {
       this.isEdit = false;
     });
   }
+
+  //  Edit a client event
+  onDeleteClick(id) {
+    //  Send to server and after that, update clients info in page
+    this.clientService.deleteClient(id).subscribe(client => {
+      //  Delete old client info
+      for (let index = 0; index < this.clients.length; index++) {
+        if (id == this.clients[index]._id) {
+          this.clients.splice(index, 1);
+        }
+      }
+    });
+  }
 }

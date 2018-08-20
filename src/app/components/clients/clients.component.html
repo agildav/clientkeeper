@@ -19,7 +19,8 @@
         <input type="text" class="form-control" [(ngModel)]="phone" name="phone" placeholder="111-111-111">
       </div>
 
-      <button type="submit" class="btn btn-primary btn-lg">Update</button>
+      <button type="submit" class="btn btn-primary btn-lg mr-2">Update</button>
+      <a class="btn btn-danger btn-lg" href="/">Cancel</a>
     </form>
   </div>
 
@@ -63,8 +64,8 @@
       <td>{{client.email}}</td>
       <td>{{client.phone}}</td>
       <td>
-        <a (click)="onEditClick(client)" class="btn btn-primary edit">Edit</a>
-        <a class="btn btn-danger delete">Delete</a>
+        <a (click)="onEditClick(client)" class="btn btn-primary mr-2">Edit</a>
+        <a (click)="onDeleteClick(client._id)" class="btn btn-danger delete">Delete</a>
       </td>
     </tr>
   </table>

@@ -39,4 +39,12 @@ export class ClientService {
       .put(this.serverURL + "/" + newClient._id, newClient, { headers })
       .pipe(map(res => res.json()));
   }
+
+  //  Delete a client in server
+  deleteClient(id) {
+    //  Delete to server
+    return this.http
+      .delete(this.serverURL + "/" + id)
+      .pipe(map(res => res.json()));
+  }
 }
