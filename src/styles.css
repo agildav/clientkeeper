@@ -3,6 +3,14 @@
   margin-right: 3px;
 }
 
+.client-form {
+  margin-top: 5rem;
+}
+
 .client-list {
-  margin-top: 6rem;
+  margin-top: 1.5rem;
+}
+
+.form-bg {
+  background-color: #303030;
 }
