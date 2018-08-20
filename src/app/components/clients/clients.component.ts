@@ -6,11 +6,12 @@ import { ClientService } from "../../services/client.service";
   templateUrl: "./clients.component.html"
 })
 export class ClientsComponent implements OnInit {
+  clients;
   constructor(private clientService: ClientService) {}
   ngOnInit() {
     //  Get clients when connecting
     this.clientService.getClients().subscribe(clients => {
-      console.log(clients);
+      this.clients = clients;
     });
   }
 }
