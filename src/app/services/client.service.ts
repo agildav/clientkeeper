@@ -27,4 +27,16 @@ export class ClientService {
       .post(this.serverURL, newClient, { headers })
       .pipe(map(res => res.json()));
   }
+
+  //  Update a client in server
+  updateClient(newClient) {
+    let headers = new Headers();
+    //  Set headers
+    headers.append("Content-Type", "application/json");
+
+    //  Put to server
+    return this.http
+      .put(this.serverURL + "/" + newClient._id, newClient, { headers })
+      .pipe(map(res => res.json()));
+  }
 }
