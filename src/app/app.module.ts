@@ -3,11 +3,12 @@ import { NgModule } from "@angular/core";
 import { HttpModule } from "@angular/http";
 
 import { AppComponent } from "./app.component";
+import { NavbarComponent } from "./components/navbar/navbar.component";
 import { ClientsComponent } from "./components/clients/clients.component";
 import { ClientService } from "./services/client.service";
 
 @NgModule({
-  declarations: [AppComponent, ClientsComponent],
+  declarations: [AppComponent, ClientsComponent, NavbarComponent],
   imports: [BrowserModule, HttpModule],
   providers: [ClientService],
   bootstrap: [AppComponent]
