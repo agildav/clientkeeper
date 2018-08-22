@@ -1,4 +1,7 @@
 <div class="client-form">
+  <div *ngIf="isError" class="alert alert-dismissible alert-danger">
+    <p><strong>Oops!</strong> Fill the form first.</p>
+  </div>
   <div *ngIf='isEdit'>
     <h3>Edit client</h3>
     <form (submit)="onEditSubmit()" class="form-bg" method="POST">
@@ -65,7 +68,7 @@
       <td>{{client.phone}}</td>
       <td>
         <a (click)="onEditClick(client)" class="btn btn-primary mr-2">Edit</a>
-        <a (click)="onDeleteClick(client._id)" class="btn btn-danger delete">Delete</a>
+        <a href="/" (click)="onDeleteClick(client._id)" class="btn btn-danger delete">Delete</a>
       </td>
     </tr>
   </table>

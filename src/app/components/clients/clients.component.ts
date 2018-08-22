@@ -14,6 +14,7 @@ export class ClientsComponent implements OnInit {
   email;
   phone;
   isEdit;
+  isError;
 
   constructor(private clientService: ClientService) {}
 
@@ -24,34 +25,40 @@ export class ClientsComponent implements OnInit {
     });
 
     this.isEdit = false;
+    this.isError = false;
   }
 
-  //  TODO: Fields not empty
   //  Add a client
   onAddSubmit() {
-    let newClient = {
-      _id: this._id,
-      first_name: this.first_name,
-      last_name: this.last_name,
-      email: this.email,
-      phone: this.phone
-    };
+    if (!this.first_name || !this.last_name || !this.email || !this.phone) {
+      this.isError = true;
+    } else {
+      let newClient = {
+        _id: this._id,
+        first_name: this.first_name,
+        last_name: this.last_name,
+        email: this.email,
+        phone: this.phone
+      };
 
-    //  Send to server and after that, update clients info in page
-    this.clientService.saveClients(newClient).subscribe(client => {
-      //  Update page
-      this.clients.push(client);
-      //  Clear form
-      this.first_name = "";
-      this.last_name = "";
-      this.email = "";
-      this.phone = "";
-    });
+      //  Send to server and after that, update clients info in page
+      this.clientService.saveClients(newClient).subscribe(client => {
+        //  Update page
+        this.clients.push(client);
+        //  Clear form
+        this.first_name = "";
+        this.last_name = "";
+        this.email = "";
+        this.phone = "";
+        this.isError = false;
+      });
+    }
   }
 
   //  Edit a client event
   onEditClick(client) {
     //  Render edit form
+    this.isError = false;
     this.isEdit = true;
 
     //  Fill form
@@ -62,39 +69,45 @@ export class ClientsComponent implements OnInit {
     this.phone = client.phone;
   }
 
-  //  TODO: Do not update over existing user | Fields not empty
   //  Edit a client
   onEditSubmit() {
-    let updateClient = {
-      _id: this._id,
-      first_name: this.first_name,
-      last_name: this.last_name,
-      email: this.email,
-      phone: this.phone
-    };
+    if (!this.first_name || !this.last_name || !this.email || !this.phone) {
+      this.isError = true;
+    } else {
+      let updateClient = {
+        _id: this._id,
+        first_name: this.first_name,
+        last_name: this.last_name,
+        email: this.email,
+        phone: this.phone
+      };
 
-    //  Send to server and after that, update clients info in page
-    this.clientService.updateClient(updateClient).subscribe(client => {
-      //  Delete old client info
-      for (let index = 0; index < this.clients.length; index++) {
-        if (client._id == this.clients[index]._id) {
-          this.clients.splice(index, 1);
+      //  Send to server and after that, update clients info in page
+      this.clientService.updateClient(updateClient).subscribe(client => {
+        //  Delete old client info
+        for (let index = 0; index < this.clients.length; index++) {
+          if (client._id == this.clients[index]._id) {
+            this.clients.splice(index, 1);
+          }
         }
-      }
 
-      //  Update page
-      this.clients.push(client);
-      //  Clear form
-      this.first_name = "";
-      this.last_name = "";
-      this.email = "";
-      this.phone = "";
-      this.isEdit = false;
-    });
+        //  Update page
+        this.clients.push(client);
+        //  Clear form
+        this._id = "";
+        this.first_name = "";
+        this.last_name = "";
+        this.email = "";
+        this.phone = "";
+        this.isEdit = false;
+        this.isError = false;
+      });
+    }
   }
 
   //  Edit a client event
   onDeleteClick(id) {
+    this.isError = false;
     //  Send to server and after that, update clients info in page
     this.clientService.deleteClient(id).subscribe(client => {
       //  Delete old client info
