@@ -7,7 +7,7 @@ import { map } from "rxjs/operators";
 @Injectable()
 export class ClientService {
   //  Props
-  serverURL = "http://localhost:3000/api/clients";
+  serverURL = "https://clientkeeper-app.herokuapp.com/api/clients";
 
   constructor(private http: Http) {}
 
