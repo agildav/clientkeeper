@@ -1,5 +1,5 @@
 # Clientkeeper
-Simple client management MEAN app
+Client management CRUD MEAN app
 
 
 # See the live app 
